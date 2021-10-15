@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>반납하기 누르면 신청</title>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	emailjs.init("user_xOiQpkRaJHmjECSPWnyTX");
+    	$('#alarm').click(function(){
+	    	var templateParams = {
+	    	email: $('input[name=user_email]').val(),
+	    	name: $('input[name=user_name]').val(),
+	    	title: $('input[name=book_title]').val()};
+	    	
+	    	emailjs.send('service_x6j9axp', 'template_9eguio9', templateParams,"user_xOiQpkRaJHmjECSPWnyTX").then(
+	    			function(response){
+	    				console.log('SUCCESS!!', response.status, response.text);
+	    				alert('재고 알람 신청이 완료되었습니다.');
+	    			}, function(error){
+	    				console.log('FAILED...', error);
+	    			});
+	    	});
+    });
+    </script>
+    
+</head>
+<body>
+<input type="text" hidden="true" name="user_email" th:value="${member.email}">
+<input type="text" hidden="true" name="user_name" th:value="${member.name}">
+<input type="text" hidden="true" name="book_title" th:value="${book_info.title}">
+
+
+<button id="alarm">반납하기</button>
+</body>
+</html>

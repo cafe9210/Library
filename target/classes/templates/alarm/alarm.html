@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>알람 신청</title>
+
+    <script type="text/javascript">
+    function removeCheck() {
+    	 if (confirm("재고 알람을 신청하시겠습니까?") == true){    //확인
+    	     location.href="/alarm/complete";
+    	 }else{   //취소
+    	     return false;
+    	 }
+    	}
+    </script>
+    
+</head>
+<body>
+<button id="alarm" type="submit" onClick="removeCheck();">재고 알람 신청</button>
+</body>
+</html>
