@@ -53,7 +53,12 @@ $(function(){
 		: alert("검색 값을 입력주세요");
 	})
 	
-})
+});
+
+function mypageMove() {
+    console.log('mypage');
+    location.href = '/member/info';
+}
 </script>
 </head>
 <body>
@@ -80,10 +85,19 @@ $(function(){
         <span th:text ="${member.name}"></span>님 환영합니다~~<br>
         <a sec:authorize="isAuthenticated()" th:href="@{/member/logout}">로그아웃</a><br>
     </div>
-    
-    <button onclick="">연장하기</button>
+    <button onclick="mypageMove()">my페이지</button>
+    <button onclick="">연장하기</button><br/>
 
-    <button id="rentaltest" type="submit" onclick="">대여</button>
-    <button>반납</button>
+<!--    <form th:action="@{/member/rental}" method="POST">-->
+<!--        <div>-->
+<!--            <label for="bid">bid : </label>-->
+<!--            <input type="text" name="bid" id="bid" ><br>-->
+<!--            <label for="isbn">isbn : </label>-->
+<!--            <input type="text" name="isbn" id="isbn" ><br>-->
+<!--        </div>-->
+<!--        <button type="submit">대여</button>-->
+<!--    </form>-->
+
+
 </body>
 </html>

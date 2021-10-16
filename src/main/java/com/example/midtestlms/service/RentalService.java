@@ -22,8 +22,13 @@ public class RentalService {
     }
 
     // 책 대여
-    public Rental insertRental(Rental rental){
-        return rentalMapper.insertRental(rental);
+    public void insertRental(int bid, Long mid, String isbn){
+        rentalMapper.insertRental(bid, mid, isbn);
+    }
+
+    // 책 대여 연장
+    public int updateDueReturnDate(int r_id){
+        return rentalMapper.updateDueReturnDate(r_id);
     }
 
 }
