@@ -9,7 +9,11 @@
     <script>
         function rentalExtension() {
             console.log('rental extention btn click event');
-            alert('책 대여 기간을 연장 하겠습니까?')
+            if(confirm('책 대여 기간을 연장 하겠습니까?') == true){
+                location.href = '/book/rental/extension';
+            }else{
+                return false;
+            }
             // location.href = '/book/rental/extension';
         }
     </script>
@@ -138,7 +142,7 @@
                 <td th:text="${overdue_table.b_title}">
 
                 </td>
-                <td th:text="${overdue_table.c_id}">
+                <td th:text="${overdue_table.c_name}">
 
                 </td>
                 <td th:text="${overdue_table.b_author}">

@@ -16,9 +16,10 @@ public class Overdue {
     private String b_author;
     private String b_publisher;
     private int cnt_date;
+    private String c_name;
 
     @Builder
-    public Overdue(int r_id, int b_id, String isbn, String b_title, int c_id, String b_author, String b_publisher, int cnt_date) {
+    public Overdue(int r_id, int b_id, String isbn, String b_title, int c_id, String b_author, String b_publisher, int cnt_date, String c_name) {
         this.r_id = r_id;
         this.b_id = b_id;
         this.isbn = isbn;
@@ -27,5 +28,6 @@ public class Overdue {
         this.b_author = b_author;
         this.b_publisher = b_publisher;
         this.cnt_date = cnt_date;
+        this.c_name = c_name;
     }
 }

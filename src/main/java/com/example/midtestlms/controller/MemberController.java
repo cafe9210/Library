@@ -96,7 +96,7 @@ public class MemberController {
     public String myInfo(Model model, NotificationDto notificationDto, @AuthenticationPrincipal User user) {
         Member members = memberService.findMember(user.getUsername());
         List<Rental> rentalList = rentalService.findRental(members);
-        List<Overdue> overdueList = overdueService.findOverdue(members);
+        List<Overdue> overdueList = overdueService.findOverdue(members, members.getM_id().intValue());
         List<Notification> notificationList = notificationService.findNotification(members);
 
         System.out.println("총 대여 책 개수 : "+rentalList.size());
