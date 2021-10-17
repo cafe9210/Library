@@ -20,8 +20,8 @@ public class OverdueDto {
     private int c_id;
     private String b_author;
     private String b_publisher;
-    private int cnt_date;
     private String c_name;
+    private int cnt_date;
 
     public Overdue toEntity() {
         return Overdue.builder()
@@ -36,7 +36,7 @@ public class OverdueDto {
                 .build();
     }
 
-    public OverdueDto(int r_id, int b_id, String isbn, String b_title, int c_id, String b_author, String b_publisher, int cnt_date, String c_name) {
+    public OverdueDto(String c_name,int r_id, int b_id, String isbn, String b_title, int c_id, String b_author, String b_publisher, int cnt_date) {
         this.r_id = r_id;
         this.b_id = b_id;
         this.isbn = isbn;

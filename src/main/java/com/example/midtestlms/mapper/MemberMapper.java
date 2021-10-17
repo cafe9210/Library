@@ -1,11 +1,16 @@
 package com.example.midtestlms.mapper;
 
-import com.example.midtestlms.domain.Member;
-import com.example.midtestlms.dto.MemberDto;
-import org.apache.ibatis.annotations.*;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import com.example.midtestlms.domain.Member;
 
 @Mapper
 public interface MemberMapper {

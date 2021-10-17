@@ -16,6 +16,11 @@
             }
             // location.href = '/book/rental/extension';
         }
+        function returnBook() {
+            alert("책 반납이 완료 되었습니다.")
+            location.href = '/member/iinfo';
+            // location.href = '/book/rental/extension';
+        }
     </script>
 </head>
 <body>
@@ -49,7 +54,7 @@
             <tr>
                 <th>idx</th>  <!-- r_id 대여 인덱스 -->
                 <th>책id</th>
-<!--                <th>책 대여 유저ID</th>-->
+                <th>책 대여 유저ID</th>
                 <th>ISBN</th>
                 <th>제목</th>
                 <th>저자</th>
@@ -68,9 +73,9 @@
                 <td name="b_id" th:text="${rantal_table.b_id}">
 
                 </td>
-<!--                <td name="m_id" th:text="${rantal_table.m_id}">-->
+                <td name="m_id" th:text="${rantal_table.m_id}">
 
-<!--                </td>-->
+                </td>
                 <td name="isbn" th:text="${rantal_table.isbn}">
 
                 </td>
@@ -90,23 +95,25 @@
 
                 </td>
                 <td>
-                    <div th:text="${rantal_table.return_status} == 0 ? '대여중' : '반납완료'">
+                 <div th:text="${rantal_table.return_status} == 0 ? '대여중' : '반납완료'"></div>
 
+                </td>
+                <td>
+                
+                    <div th:if="${rantal_table.return_status} == 0">
+                        <form th:action="@{/book/rental/return}" th:method="post">
+                                <input type="text" hidden="true" name="r_id" th:value="${rantal_table.r_id}">
+                                <input type="submit" value="반납신청" onclick="returnBook();">
+                        </form>
                     </div>
                 </td>
                 <td>
                     <div th:if="${rantal_table.return_status} == 0">
-                        <button>반납신청</button>
-                    </div>
-                </td>
-                <td>
-                    <div th:if="${rantal_table.return_status} == 0">
-                        <div th:if="${rantal_table.ext_num} <= 3">
+                        <div th:if="${rantal_table.ext_num} < 3">
                             <form th:action="@{/book/rental/extension}" th:method="post">
                                 <input type="text" hidden="true" name="r_id" th:value="${rantal_table.r_id}">
                                 <input type="submit" value="연장신청" onclick="rentalExtension();">
                             </form>
-
                         </div>
                     </div>
                 </td>
@@ -161,16 +168,12 @@
         <table>
             <tr>
                 <th>idx</th>
-                <th>책id</th>
                 <th>ISBN</th>
                 <th>제목</th>
                 <th>알람 전송 여부</th>
             </tr>
             <tr th:each="notification_table : ${notificationList}">
                 <td th:text="${notification_table.n_id}">
-
-                </td>
-                <td th:text="${notification_table.b_id}">
 
                 </td>
                 <td th:text="${notification_table.isbn}">
