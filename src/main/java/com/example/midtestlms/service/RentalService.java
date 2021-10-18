@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.midtestlms.domain.Member;
 import com.example.midtestlms.domain.Rental;
@@ -35,6 +36,7 @@ public class RentalService {
 
     
     // 반납하기
+    @Transactional
     public int returnBook(int r_Id) {
     	System.out.println(r_Id);
     	Rental rental = new Rental();
@@ -58,12 +60,14 @@ public class RentalService {
 
 
 	// 대여하기
-	public void rentalBook(Member member, String isbn, int b_id) {
+    @Transactional
+	public int rentalBook(Member member, String isbn, int b_id) {
 		System.out.println("hihi : "+member.getM_id().intValue());
 		List<Member> memberList = rentalMapper.rentableDate(member.getM_id().intValue());
 		
 		System.out.println(memberList +"나 memberList");
-		if (memberList.size() != 0) {
+		System.out.println(memberList.size());
+		if (memberList.size() > 0) {
 			System.out.println("1111111111111");
 			// 책 상태 대출하기로 바꾸기 : 쿼리문
 			rentalMapper.bookStatus(b_id);
@@ -71,6 +75,9 @@ public class RentalService {
 			System.out.println("22222222222");
 			// rental_manage에 대출 된 책 insert : 쿼리문
 			rentalMapper.rentalBook(member.getM_id().intValue(), isbn, b_id);
+			System.out.println("대여성공");
+			return 1;
 		}
+		return 0;
 	}
 }
